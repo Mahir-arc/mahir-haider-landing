@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d8d4cc">
+<title>MAHIR HAIDER — Form in Motion</title>
+<meta name="description" content="An immersive digital portfolio experiment by Mahir Haider.">
+<style>
+:root{--paper:#d8d4cc;--ink:#191918;--muted:#77736c;--rule:rgba(25,25,24,.2)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+header{height:76px;padding:0 4.5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--rule);position:relative;z-index:5}
+.wordmark{font-size:12px;letter-spacing:.3em;font-weight:700}.header-right{display:flex;align-items:center;gap:34px}.header-right a{color:inherit;text-decoration:none;text-transform:uppercase;font-size:9px;letter-spacing:.18em}.availability{display:flex;align-items:center;gap:8px;color:#57564f}.dot{width:6px;height:6px;background:#66735d;border-radius:50%;box-shadow:0 0 0 4px #66735d22}
+main{position:relative}.hero{min-height:calc(100svh - 76px);padding:7vh 4.5vw 65px;display:grid;grid-template-columns:.92fr 1.08fr;position:relative;overflow:hidden;align-items:center}
+.hero-copy{position:relative;z-index:2;align-self:center}.kicker{font-size:9px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;margin-bottom:30px}
+h1{font-size:clamp(58px,9.4vw,145px);line-height:.78;letter-spacing:-.095em;font-weight:500;margin:0 0 35px}h1 span{display:block}h1 .serif{font-family:Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.105em;margin-left:.42em}
+.intro{max-width:300px;font:17px/1.45 Georgia,serif;color:#5c5953;margin:0 0 32px}
+.enter{display:inline-flex;align-items:center;gap:24px;color:inherit;text-decoration:none;border-bottom:1px solid var(--ink);padding:0 0 11px;font-size:9px;letter-spacing:.2em;text-transform:uppercase}.enter b{font-size:17px;font-weight:400}
+.scene-wrap{height:min(76vh,740px);min-height:440px;position:relative;isolation:isolate}#scene{width:100%;height:100%;display:block;touch-action:pan-y;cursor:grab}#scene:active{cursor:grabbing}
+.scene-caption{position:absolute;right:1%;top:7%;writing-mode:vertical-rl;font-size:8px;letter-spacing:.22em;color:var(--muted)}
+.orbit-label{position:absolute;left:0;bottom:10%;font-size:8px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.hero-index{position:absolute;bottom:22px;left:4.5vw;right:4.5vw;display:flex;justify-content:space-between;border-top:1px solid var(--rule);padding-top:13px;color:var(--muted);font-size:8px;letter-spacing:.17em;text-transform:uppercase}
+.ticker{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 4.5vw;display:flex;justify-content:space-between;gap:20px;white-space:nowrap;overflow:hidden;font:italic 17px Georgia,serif;color:#55524d}
+.work{padding:13vh 8vw 15vh}.section-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:50px}.section-head small{font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}.section-head h2{font:400 clamp(42px,7vw,90px)/.9 Georgia,serif;letter-spacing:-.07em;margin:0;max-width:660px}
+.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}.card{min-height:260px;background:#c8c3ba;position:relative;overflow:hidden;padding:20px;display:flex;flex-direction:column;justify-content:space-between}.card:nth-child(2){background:#b9b6af}.card:nth-child(3){background:#e5e1d9}.card-number{font-size:8px;letter-spacing:.2em;color:#68645d}.card-title{font:italic 30px Georgia,serif;letter-spacing:-.04em}.card-shape{position:absolute;width:170px;height:170px;border:1px solid #69665f66;border-radius:50%;right:8%;top:20%;transform:rotate(-28deg);box-shadow:inset 0 0 28px #ffffff33,0 15px 30px #37332b15}.card:nth-child(2) .card-shape{border-radius:12px;transform:rotate(34deg);width:130px;height:190px}.card:nth-child(3) .card-shape{border-radius:50% 50% 8% 50%;transform:rotate(45deg)}
+.footer{padding:40px 4.5vw 28px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:end}.footer strong{font-size:clamp(25px,5vw,58px);letter-spacing:-.07em;font-weight:500}.footer small{font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
+@media(max-width:760px){header{height:65px;padding:0 6vw}.header-right{gap:15px}.header-right a:not(.availability){display:none}.hero{grid-template-columns:1fr;padding:8vh 6vw 80px;gap:0}.hero-copy{grid-row:1}.scene-wrap{grid-row:2;height:48vh;min-height:320px;margin-top:-10px}h1{font-size:clamp(58px,15vw,100px)}.intro{font-size:15px}.hero-index{left:6vw;right:6vw;bottom:18px;font-size:7px}.ticker{font-size:14px}.work{padding:10vh 6vw}.section-head{display:block}.section-head h2{margin-top:25px}.cards{grid-template-columns:1fr}.card{min-height:220px}.footer{padding:30px 6vw;display:block}.footer small{display:block;margin-top:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body>
+<header><div class="wordmark">MAHIR HAIDER</div><div class="header-right"><span class="availability"><i class="dot"></i><a>Available for select projects</a></span><a href="#work">Selected work</a><a href="mailto:hello@mahirhaider.com">Contact ↗</a></div></header>
+<main>
+<section class="hero">
+<div class="hero-copy"><div class="kicker">Independent creative practice · 2026</div><h1><span>Form</span><span class="serif">in motion.</span></h1><p class="intro">A visual language for brands with something to say — and the confidence to say it beautifully.</p><a class="enter" href="#work">Explore the world <b>↗</b></a></div>
+<div class="scene-wrap"><canvas id="scene" aria-label="Interactive 3D abstract sculpture. Drag to explore."></canvas><div class="scene-caption">A STUDY IN MATERIAL & LIGHT</div><div class="orbit-label">Drag to rotate · Move to illuminate</div></div>
+<div class="hero-index"><span>MH — 001 / Digital atelier</span><span>Graphic design · Web · Art direction</span><span>Scroll to explore ↓</span></div>
+</section>
+<div class="ticker"><span>Less, but with meaning.</span><span>◌</span><span>Made to move you.</span><span>◌</span><span>Less, but with meaning.</span></div>
+<section class="work" id="work"><div class="section-head"><small>01 / The practice</small><h2>Ideas made<br>impossible to ignore.</h2></div><div class="cards"><article class="card"><span class="card-number">01 — IDENTITY</span><div class="card-shape"></div><span class="card-title">Distinct by design.</span></article><article class="card"><span class="card-number">02 — DIGITAL</span><div class="card-shape"></div><span class="card-title">Built for feeling.</span></article><article class="card"><span class="card-number">03 — DIRECTION</span><div class="card-shape"></div><span class="card-title">A point of view.</span></article></div></section>
+</main>
+<footer class="footer"><strong>Make it matter.</strong><small>MAHIR HAIDER · Independent creative practice · © 2026</small></footer>
+<script type="module">
+import * as THREE from 'three';
+const canvas=document.querySelector('#scene'),wrap=document.querySelector('.scene-wrap');
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(35,1,.1,100);camera.position.set(0,0,8.5);
+scene.add(new THREE.HemisphereLight(0xfaf7ef,0x615b52,2.2));
+const key=new THREE.DirectionalLight(0xfff5e5,4.2);key.position.set(4,5,5);scene.add(key);
+const edge=new THREE.PointLight(0xd4d0c8,45,16);edge.position.set(-4,1,2);scene.add(edge);
+const group=new THREE.Group();scene.add(group);
+const porcelain=new THREE.MeshPhysicalMaterial({color:0xc2bdb3,metalness:.28,roughness:.2,clearcoat:1,clearcoatRoughness:.08});
+const chrome=new THREE.MeshPhysicalMaterial({color:0x77746e,metalness:.92,roughness:.13,clearcoat:1});
+const smoked=new THREE.MeshPhysicalMaterial({color:0x343432,metalness:.62,roughness:.18,clearcoat:1});
+const knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.18,.31,240,32,2,5),porcelain);knot.rotation.set(.3,.4,.1);group.add(knot);
+const halo=new THREE.Group();group.add(halo);
+for(let i=0;i<4;i++){const m=new THREE.Mesh(new THREE.TorusGeometry(1.72+i*.12,.012,12,220),i%2?chrome:smoked);m.rotation.set(.45+i*.38,.2+i*.52,.3+i*.29);halo.add(m)}
+const shards=new THREE.Group();group.add(shards);
+for(let i=0;i<11;i++){const a=i/11*Math.PI*2;const mesh=new THREE.Mesh(new THREE.OctahedronGeometry(.12+(i%3)*.035,1),i%3===0?smoked:chrome);mesh.position.set(Math.cos(a)*2.15,Math.sin(a*1.8)*1.45,Math.sin(a)*1.5);mesh.rotation.set(a,a*.7,0);shards.add(mesh)}
+const back=new THREE.Mesh(new THREE.TorusGeometry(2.48,.006,8,240),new THREE.MeshBasicMaterial({color:0x5e5b55,transparent:true,opacity:.32}));back.rotation.x=1.2;group.add(back);
+let pointerX=0,pointerY=0,drag=false,lastX=0,lastY=0,manualX=0,manualY=0;
+canvas.addEventListener('pointerdown',e=>{drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{const b=canvas.getBoundingClientRect();pointerX=(e.clientX-b.left)/b.width-.5;pointerY=(e.clientY-b.top)/b.height-.5;if(drag){manualY+=(e.clientX-lastX)*.008;manualX+=(e.clientY-lastY)*.008;lastX=e.clientX;lastY=e.clientY}});
+for(const n of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(n,()=>drag=false);
+const clock=new THREE.Clock();let raf=0;
+function resize(){const w=wrap.clientWidth,h=wrap.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+new ResizeObserver(resize).observe(wrap);resize();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function frame(){raf=requestAnimationFrame(frame);const t=clock.getElapsedTime();if(!reduce){group.rotation.y+=(manualY+pointerX*.3+Math.sin(t*.18)*.1-group.rotation.y)*.035;group.rotation.x+=(manualX+pointerY*.2-group.rotation.x)*.035;group.position.y=Math.sin(t*.7)*.07;halo.rotation.z=Math.sin(t*.17)*.09;shards.rotation.y=-t*.035;key.position.x=3+pointerX*4;edge.position.y=1-pointerY*3}camera.lookAt(0,0,0);renderer.render(scene,camera)}
+frame();
+document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else frame()});
+</script>
+</body></html>
