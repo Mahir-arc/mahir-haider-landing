@@ -82,6 +82,21 @@ footer.glass-footer .footer-back:hover{background:#ffffff12;border-color:#ffffff
 .website-previews .project-meta strong{font-size:18px}
 .showcase-arrow{display:none!important}
 @media(max-width:700px){.projects.website-previews{grid-template-columns:1fr}.website-previews .project:nth-child(3){grid-column:auto}.website-previews .project-art.preview-art{height:280px;padding:15px}.site-hero{padding-top:18px}.arch-layout{padding-top:18px}}
+
+/* Responsive portfolio composition — balanced editorial grids */
+.projects.website-previews{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:20px}
+.website-previews .project:nth-child(3){grid-column:auto}
+.website-previews .project-art.preview-art{height:clamp(240px,26vw,360px)}
+.showcase-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.showcase-grid .showcase-card{grid-column:span 2}
+.showcase-grid .showcase-card:nth-child(4){grid-column:2/span 2}
+.showcase-grid .showcase-card:nth-child(5){grid-column:4/span 2}
+.showcase-visual{height:clamp(230px,25vw,330px)}
+.showcase-card{border-radius:2px}
+.showcase-card:hover .visual-type{transform:scale(1.045);letter-spacing:-.095em}
+.showcase-visual .visual-type{transition:transform .65s cubic-bezier(.2,.75,.2,1),letter-spacing .65s}
+@media(max-width:900px){.projects.website-previews{grid-template-columns:repeat(2,minmax(0,1fr))}.website-previews .project:nth-child(3){grid-column:1/-1}.website-previews .project:nth-child(3) .project-art.preview-art{max-width:calc(50% - 10px)}.showcase-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.showcase-grid .showcase-card,.showcase-grid .showcase-card:nth-child(4),.showcase-grid .showcase-card:nth-child(5){grid-column:auto}}
+@media(max-width:600px){.projects.website-previews{grid-template-columns:1fr}.website-previews .project:nth-child(3){grid-column:auto}.website-previews .project:nth-child(3) .project-art.preview-art{max-width:none}.website-previews .project-art.preview-art{height:280px}.showcase-grid{grid-template-columns:1fr;gap:18px}.showcase-visual{height:270px}.showcase-meta{padding:17px}.showcase-meta h3{font-size:20px}}
 </style></head>
 <body>
 <header class="wrap"><a class="logo" href="#top">MAHIR <span>HAIDER.</span></a><nav class="nav" id="nav"><a href="#work">WORK</a><a href="#showcase">DEMO STUDIO</a><a href="#services">SERVICES</a><a href="#about">ABOUT</a></nav><a class="contact-link" href="#contact">LET'S TALK ↗</a><button class="menu" id="menu" aria-label="Toggle navigation">MENU</button></header>
