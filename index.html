@@ -35,6 +35,20 @@
 .showcase-arrow{font-size:22px;color:#aaa}
 .showcase-foot{font:10px 'DM Mono';letter-spacing:.1em;color:#777;margin-top:25px}
 @media(max-width:700px){.showcase-grid{grid-template-columns:1fr}.showcase-visual{height:260px}.showcase-meta{padding:17px}}
+
+/* Glass / liquid footer — restrained monochrome treatment */
+footer.glass-footer{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;min-height:142px;padding:34px var(--pad);border-top:1px solid #ffffff24;background:linear-gradient(115deg,#ffffff0d 0%,#ffffff03 36%,#ffffff0b 68%,#ffffff02 100%),rgba(18,18,18,.76);backdrop-filter:blur(24px) saturate(135%);-webkit-backdrop-filter:blur(24px) saturate(135%)}
+footer.glass-footer:before{content:"";position:absolute;z-index:-1;inset:-80% -12% auto;height:220%;background:radial-gradient(ellipse at 18% 55%,#ffffff18 0,transparent 32%),radial-gradient(ellipse at 78% 35%,#bcbab322 0,transparent 30%);filter:blur(22px);pointer-events:none}
+footer.glass-footer:after{content:"";position:absolute;z-index:-1;left:var(--pad);right:var(--pad);top:0;height:1px;background:linear-gradient(90deg,transparent,#ffffff75 22%,#ffffff18 70%,transparent);pointer-events:none}
+footer.glass-footer .footer-mark{font:700 clamp(20px,3vw,34px) Manrope,sans-serif;letter-spacing:-.075em;color:#f3f1ec}
+footer.glass-footer .footer-mark span{color:#888;font-weight:400}
+footer.glass-footer .footer-center{display:flex;flex-direction:column;gap:8px;text-align:center;color:#aaa}
+footer.glass-footer .footer-center strong{font:10px 'DM Mono',monospace;letter-spacing:.14em;color:#e0ded8;font-weight:400}
+footer.glass-footer .footer-center small{font:9px 'DM Mono',monospace;letter-spacing:.1em;color:#777}
+footer.glass-footer .footer-back{justify-self:end;border:1px solid #ffffff30;padding:12px 15px;transition:background .3s,border-color .3s,color .3s}
+footer.glass-footer .footer-back:hover{background:#ffffff12;border-color:#ffffff80;color:#fff}
+@media(max-width:700px){footer.glass-footer{grid-template-columns:1fr auto;gap:20px;padding-top:28px;padding-bottom:28px}footer.glass-footer .footer-center{grid-column:1/-1;grid-row:2;text-align:left;align-items:flex-start}footer.glass-footer .footer-back{grid-column:2;grid-row:1}}
+@media(prefers-reduced-motion:reduce){footer.glass-footer *{transition:none!important}}
 </style></head>
 <body>
 <header class="wrap"><a class="logo" href="#top">MAHIR <span>HAIDER.</span></a><nav class="nav" id="nav"><a href="#work">WORK</a><a href="#showcase">DEMO STUDIO</a><a href="#services">SERVICES</a><a href="#about">ABOUT</a></nav><a class="contact-link" href="#contact">LET'S TALK ↗</a><button class="menu" id="menu" aria-label="Toggle navigation">MENU</button></header>
@@ -52,6 +66,6 @@
 <a class="showcase-card" href="work/hospitality.html"><div class="showcase-visual"><span class="visual-index">05 / HOSPITALITY</span><span class="visual-type">STAY<br>AWHILE.</span><span class="visual-caption">ATMOSPHERE · DETAIL · DESIRE</span></div><div class="showcase-meta"><div><h3>Hospitality / Lifestyle</h3><p>An atmospheric digital experience that sells the feeling, not just the room.</p></div><span class="showcase-arrow">↗</span></div></a>
 </div><p class="showcase-foot">INDEPENDENT CONCEPT PROJECTS · CREATED TO DEMONSTRATE CREATIVE DIRECTION</p></section>
 <section class="cta" id="contact"><div class="eyebrow">HAVE A PROJECT IN MIND?</div><h2>LET'S MAKE<br>IT MATTER.</h2><a href="https://www.linkedin.com/in/mahir-haider-6717861aa/" target="_blank" rel="noopener">CONNECT ON LINKEDIN ↗</a></section></main>
-<footer><span class="mono">© 2026 MAHIR HAIDER</span><small>LINKEDIN · WEB DEVELOPMENT · DIGITAL MARKETING</small><a class="mono" href="#top">BACK TO TOP ↑</a></footer>
+<footer class="glass-footer"><a class="footer-mark" href="#top">MAHIR <span>HAIDER.</span></a><div class="footer-center"><strong>INDEPENDENT DIGITAL PRACTICE</strong><small>DESIGN · STRATEGY · DIGITAL EXPERIENCES</small><small>© 2026 MAHIR HAIDER</small></div><a class="mono footer-back" href="#top">BACK TO TOP ↑</a></footer>
 <script>const menu=document.getElementById('menu'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.setAttribute('aria-expanded',nav.classList.contains('open'))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));</script>
 </body></html>
