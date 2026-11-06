@@ -172,6 +172,26 @@ footer.glass-footer{box-shadow:inset 0 1px #ffffff20,0 -18px 55px #0003}
 @media(hover:none){#liquid-touch-lens{display:none}}
 @media(prefers-reduced-motion:reduce){#liquid-touch-lens{display:none}.liquid-touch-ripple{animation-duration:.01ms}}
 </style>
+<style>
+/* Final orbit cleanup: keep the page cinematic without static planetary rings */
+.hero:before,
+.showcase-visual:after{content:none!important;display:none!important}
+.showcase-visual{background-image:linear-gradient(145deg,#ffffff08,transparent 58%)!important}
+/* Touch feedback is a single soft water wave, not a field of concentric rings */
+.liquid-touch-ripple{
+ position:fixed;z-index:9998;left:0;top:0;width:clamp(150px,24vmin,260px);aspect-ratio:1;
+ border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+ background:radial-gradient(circle,transparent 57%,#ffffff55 58%,#ffffff28 59%,transparent 61%);
+ box-shadow:0 0 28px #ffffff10;
+ transform:translate(-50%,-50%) scale(.22);opacity:.62;
+ animation:liquid-touch-expand 1s cubic-bezier(.16,.72,.24,1) forwards
+}
+@keyframes liquid-touch-expand{
+ 0%{transform:translate(-50%,-50%) scale(.22);opacity:.62}
+ 100%{transform:translate(-50%,-50%) scale(1.8);opacity:0}
+}
+@media(max-width:700px){.showcase-visual:after{display:none!important}}
+</style>
 </head>
 <body>
 <header class="wrap"><a class="logo" href="#top">MAHIR <span>HAIDER.</span></a><nav class="nav" id="nav"><a href="#work">WORK</a><a href="#showcase">DEMO STUDIO</a><a href="#services">SERVICES</a><a href="#about">ABOUT</a></nav><a class="contact-link" href="#contact">LET'S TALK ↗</a><button class="menu" id="menu" aria-label="Toggle navigation">MENU</button></header>
