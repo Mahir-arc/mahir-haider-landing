@@ -113,6 +113,33 @@ header.wrap{background:linear-gradient(110deg,#ffffff0b,#ffffff02 48%,#ffffff08)
 .contact-section a,.contact a{background:linear-gradient(120deg,#ffffff12,#ffffff03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 footer.glass-footer{box-shadow:inset 0 1px #ffffff20,0 -18px 55px #0003}
 @media(prefers-reduced-transparency:reduce){header.wrap,.contact-link,.showcase-card,.project-meta,.service,footer.glass-footer{backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+/* Cinematic 3D editorial gallery — monochrome and poster-led */
+.hero{perspective:1500px;transform-style:preserve-3d}
+.hero:before{content:"";position:absolute;z-index:0;right:1%;top:12%;width:min(62vw,760px);aspect-ratio:1;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 48% 48%,#d8d5cc12 0 18%,transparent 19% 36%,#d8d5cc0c 37% 37.2%,transparent 37.5% 55%,#d8d5cc12 55.2% 55.5%,transparent 56%),radial-gradient(ellipse at 55% 50%,#aaa69a20,transparent 64%);filter:blur(.2px);transform:rotateX(66deg) rotateZ(-18deg);animation:hero-orbit 24s linear infinite}
+.hero-portrait{transform:perspective(1100px) rotateY(var(--portrait-y,0deg)) rotateX(var(--portrait-x,0deg)) translateZ(34px);transform-origin:center center;transition:transform .35s ease-out;filter:grayscale(100%) contrast(1.12) drop-shadow(0 28px 45px #0008)}
+.hero h1{transform:translateZ(28px);text-shadow:0 12px 40px #0008}
+@keyframes hero-orbit{0%{transform:rotateX(66deg) rotateZ(-18deg)}100%{transform:rotateX(66deg) rotateZ(342deg)}}
+#showcase{perspective:1800px;perspective-origin:50% 38%;overflow:hidden}
+#showcase .section-head,#showcase>h2,#showcase>.showcase-lead,#showcase>.showcase-foot{position:relative;z-index:2}
+.showcase-grid{position:relative;isolation:isolate;perspective:1800px;perspective-origin:50% 40%;transform-style:preserve-3d;gap:clamp(18px,2.3vw,30px)}
+.showcase-grid:before{content:"";position:absolute;z-index:-1;inset:-12% -8% -10%;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,#d8d5cc12,transparent 58%),linear-gradient(115deg,transparent 20%,#ffffff05 48%,transparent 72%);filter:blur(24px)}
+.showcase-card{position:relative;isolation:isolate;transform-style:preserve-3d;will-change:transform;transform:rotateX(var(--card-rx,0deg)) rotateY(var(--card-ry,0deg)) translateZ(var(--card-z,0px));transition:transform .55s cubic-bezier(.2,.75,.2,1),border-color .35s,box-shadow .45s;box-shadow:0 22px 55px #0008,0 3px 10px #0008,inset 0 1px #ffffff20}
+.showcase-card:before{content:"";position:absolute;z-index:5;inset:0;pointer-events:none;opacity:0;background:linear-gradient(118deg,transparent 15%,#ffffff25 34%,#ffffff08 42%,transparent 58%);transform:translateZ(52px);transition:opacity .35s}
+.showcase-card:hover{--card-z:18px;border-color:#aaa;box-shadow:0 36px 80px #000a,0 8px 18px #0008,inset 0 1px #ffffff35}
+.showcase-card:hover:before{opacity:1}
+.showcase-visual{transform:translateZ(24px);transform-style:preserve-3d;isolation:isolate;background-image:radial-gradient(ellipse at 50% 42%,#ffffff12,transparent 55%),linear-gradient(145deg,#ffffff08,transparent 55%)}
+.showcase-visual:before{inset:18px;transform:translateZ(20px);box-shadow:inset 0 0 24px #ffffff08,0 0 22px #ffffff08}
+.showcase-visual:after{transform:translateZ(34px) rotateX(65deg) rotateZ(-24deg);filter:drop-shadow(0 12px 18px #0005)}
+.showcase-visual .visual-type{transform:translateZ(48px);text-shadow:0 10px 28px #0005}
+.showcase-visual .visual-index,.showcase-visual .visual-caption{transform:translateZ(38px)}
+.showcase-meta{position:relative;z-index:2;transform:translateZ(12px)}
+.showcase-card:nth-child(2) .showcase-visual{background-image:radial-gradient(ellipse at 50% 42%,#ffffffa8,transparent 58%),linear-gradient(145deg,#f3f1eb,#d8d5cd 72%,#bdbbb4)}
+.showcase-card:nth-child(4) .showcase-visual{background-image:radial-gradient(ellipse at 50% 42%,#ffffff70,transparent 58%),linear-gradient(145deg,#d8d5cd,#aaa79f 80%)}
+.showcase-card:nth-child(3) .showcase-visual{background-image:radial-gradient(ellipse at 50% 42%,#ffffff20,transparent 60%),linear-gradient(145deg,#363636,#171717 75%)}
+.showcase-card:nth-child(5) .showcase-visual{background-image:radial-gradient(ellipse at 50% 42%,#ffffff18,transparent 60%),linear-gradient(145deg,#30302f,#101010 75%)}
+@media(max-width:700px){.hero:before{width:110vw;right:-38%;top:17%;opacity:.65}.hero-portrait{transform:none;transition:none}.showcase-grid{perspective:none;gap:18px}.showcase-card,.showcase-card:hover{transform:none;box-shadow:0 18px 42px #0008}.showcase-card:before{display:none}.showcase-visual{transform:none}.showcase-visual:before,.showcase-visual:after{transform:none}.showcase-visual .visual-type,.showcase-visual .visual-index,.showcase-visual .visual-caption{transform:none}.showcase-meta{transform:none}}
+@media(prefers-reduced-motion:reduce){.hero:before{animation:none}.hero-portrait,.showcase-card,.showcase-card:before{transition:none}}
 </style></head>
 <body>
 <header class="wrap"><a class="logo" href="#top">MAHIR <span>HAIDER.</span></a><nav class="nav" id="nav"><a href="#work">WORK</a><a href="#showcase">DEMO STUDIO</a><a href="#services">SERVICES</a><a href="#about">ABOUT</a></nav><a class="contact-link" href="#contact">LET'S TALK ↗</a><button class="menu" id="menu" aria-label="Toggle navigation">MENU</button></header>
@@ -136,4 +163,33 @@ footer.glass-footer{box-shadow:inset 0 1px #ffffff20,0 -18px 55px #0003}
 <section class="cta" id="contact"><div class="eyebrow">HAVE A PROJECT IN MIND?</div><h2>LET'S MAKE<br>IT MATTER.</h2><a href="https://www.linkedin.com/in/mahir-haider-6717861aa/" target="_blank" rel="noopener">CONNECT ON LINKEDIN ↗</a></section></main>
 <footer class="glass-footer"><a class="footer-mark" href="#top">MAHIR <span>HAIDER.</span></a><div class="footer-center"><strong>INDEPENDENT DIGITAL PRACTICE</strong><small>DESIGN · STRATEGY · DIGITAL EXPERIENCES</small><small>© 2026 MAHIR HAIDER</small></div><a class="mono footer-back" href="#top">BACK TO TOP ↑</a></footer>
 <script>const menu=document.getElementById('menu'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.setAttribute('aria-expanded',nav.classList.contains('open'))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));</script>
+
+<script>
+(()=> {
+ const finePointer=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!finePointer||reduce)return;
+ const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+ document.querySelectorAll('.showcase-card').forEach(card=>{
+  card.addEventListener('pointermove',event=>{
+   const r=card.getBoundingClientRect(),x=(event.clientX-r.left)/r.width,y=(event.clientY-r.top)/r.height;
+   card.style.setProperty('--card-rx',clamp((.5-y)*10,-5,5)+'deg');
+   card.style.setProperty('--card-ry',clamp((x-.5)*12,-6,6)+'deg');
+   card.style.setProperty('--card-z','18px');
+  });
+  card.addEventListener('pointerleave',()=>{
+   card.style.setProperty('--card-rx','0deg');card.style.setProperty('--card-ry','0deg');card.style.setProperty('--card-z','0px');
+  });
+ });
+ const hero=document.querySelector('.hero'),portrait=document.querySelector('.hero-portrait');
+ if(hero&&portrait){
+  hero.addEventListener('pointermove',event=>{
+   const r=hero.getBoundingClientRect(),x=(event.clientX-r.left)/r.width,y=(event.clientY-r.top)/r.height;
+   portrait.style.setProperty('--portrait-y',clamp((x-.5)*5,-2.5,2.5)+'deg');
+   portrait.style.setProperty('--portrait-x',clamp((.5-y)*3,-1.5,1.5)+'deg');
+  });
+  hero.addEventListener('pointerleave',()=>{portrait.style.setProperty('--portrait-y','0deg');portrait.style.setProperty('--portrait-x','0deg')});
+ }
+})();
+</script>
 </body></html>
