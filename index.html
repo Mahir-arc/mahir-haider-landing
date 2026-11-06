@@ -300,3 +300,48 @@ section{content-visibility:visible!important;contain-intrinsic-size:auto!importa
   .showcase-card,.showcase-visual .visual-type{transition:none!important}
 }
 </style>
+
+<style>
+/* Final cross-device smoothness pass: preserve the visual design, reduce scroll-time work */
+html{scroll-padding-top:84px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain}
+img{height:auto}
+a,button{-webkit-tap-highlight-color:transparent}
+.showcase-card,.project,.service,.project-meta,header,footer{isolation:auto}
+@media (hover:hover) and (pointer:fine) and (min-width:901px){
+  .showcase-card{transition:border-color .2s ease,box-shadow .2s ease!important}
+  .showcase-card:hover{box-shadow:0 12px 28px #0003!important}
+  .showcase-card:hover .visual-type{transform:scale(1.025)!important}
+}
+@media (max-width:900px){
+  html{scroll-behavior:auto!important;scroll-padding-top:72px}
+  body{overflow-x:hidden}
+  header.wrap{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .hero,.section,.cta,footer{transform:none!important;filter:none!important}
+  .showcase-card,.showcase-visual,.project-art,.service,.project-meta,
+  .about-photo,footer.glass-footer{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .showcase-card{transition:border-color .18s ease!important;box-shadow:none!important}
+  .showcase-card:hover{transform:none!important}
+  .showcase-card:active{border-color:#aaa}
+  .showcase-visual .visual-type{transition:none!important}
+  .service{box-shadow:none!important}
+  .project-meta{box-shadow:none!important}
+  .about-photo{box-shadow:none!important}
+  footer.glass-footer{background:#111!important;box-shadow:none!important}
+  footer.glass-footer:before{display:none!important}
+}
+@media (max-width:600px){
+  .hero{min-height: min(760px, 100svh);height:auto;padding-top:112px;padding-bottom:54px}
+  .hero h1{font-size:clamp(56px,15.2vw,94px);line-height:.88}
+  .hero-portrait{pointer-events:none}
+  .section{padding-top:68px;padding-bottom:68px}
+  .project-art.preview-art{contain:layout paint}
+  .showcase-visual{contain:layout paint}
+  .showcase-card{min-width:0}
+  .showcase-meta p{font-size:12px}
+  .cta{margin-left:var(--pad);margin-right:var(--pad)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
