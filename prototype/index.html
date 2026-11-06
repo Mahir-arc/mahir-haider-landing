@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e8e5df">
+<title>MAHIR HAIDER — Built to Be Remembered</title>
+<style>
+:root{--paper:#e8e5df;--ink:#171717;--muted:#77746f;--line:rgba(23,23,23,.18)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+nav{height:82px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:5}
+.brand{font-size:13px;letter-spacing:.28em;font-weight:600}.navlinks{display:flex;gap:30px}.navlinks a,.contact{color:inherit;text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase}.contact{border:1px solid var(--ink);padding:12px 17px;border-radius:30px}
+.hero{min-height:calc(100svh - 82px);position:relative;overflow:hidden;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;padding:6vh 5vw 10vh}
+.copy{position:relative;z-index:2;pointer-events:none}.eyebrow{font-size:10px;letter-spacing:.25em;color:var(--muted);margin-bottom:30px}
+h1{font-size:clamp(54px,8.5vw,128px);line-height:.83;letter-spacing:-.085em;font-weight:500;margin:0;max-width:780px}h1 span{display:block}
+.sub{font-family:Georgia,serif;font-size:clamp(18px,2vw,27px);line-height:1.35;max-width:390px;margin:34px 0 25px;color:#55524d}
+.cta{pointer-events:auto;display:inline-flex;gap:24px;align-items:center;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--ink);padding:0 0 10px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.stage{height:min(72vh,680px);min-height:390px;position:relative;perspective:1000px}.stage:after{content:"";position:absolute;inset:10% 2%;background:radial-gradient(ellipse,rgba(0,0,0,.12),transparent 65%);filter:blur(22px);z-index:0}
+#scene{width:100%;height:100%;display:block;position:relative;z-index:1;cursor:grab}#scene:active{cursor:grabbing}
+.note{position:absolute;right:5vw;top:5vh;font-size:9px;letter-spacing:.2em;color:var(--muted);writing-mode:vertical-rl}
+.meta{position:absolute;bottom:28px;left:5vw;right:5vw;display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:15px;font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.marquee{padding:22px 5vw;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:Georgia,serif;font-size:clamp(14px,2vw,21px);letter-spacing:.08em}
+.statement{padding:15vh 10vw;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}.statement h2{font:400 clamp(38px,6vw,78px)/.95 Georgia,serif;letter-spacing:-.06em;margin:0}.statement p{font:17px/1.65 Georgia,serif;color:#5d5a55;max-width:470px}
+@media(max-width:760px){nav{height:68px}.navlinks{display:none}.hero{grid-template-columns:1fr;padding:10vh 6vw 100px;gap:0}.copy{grid-row:1}.stage{grid-row:2;height:48vh;min-height:300px;margin-top:-10px}h1{font-size:clamp(54px,14vw,92px)}.meta{left:6vw;right:6vw;bottom:20px;font-size:8px}.note{right:6vw;top:3vh}.statement{grid-template-columns:1fr;padding:10vh 7vw;gap:28px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body>
+<nav><div class="brand">MAHIR HAIDER</div><div class="navlinks"><a href="#top">Home</a><a href="#statement">About</a><a href="#statement">Selected work</a><a href="#statement">Services</a></div><a class="contact" href="mailto:hello@mahirhaider.com">Let’s talk ↗</a></nav>
+<main id="top">
+<section class="hero"><div class="copy"><div class="eyebrow">INDEPENDENT CREATIVE PRACTICE&nbsp; / &nbsp;2026</div><h1><span>BUILT TO BE</span><span>REMEMBERED.</span></h1><p class="sub">Design isn't made to be seen.<br>It's made to be remembered.</p><a class="cta" href="#statement">Explore the experience <span>↗</span></a></div>
+<div class="stage"><canvas id="scene" aria-label="Interactive 3D sculptural form. Drag to rotate."></canvas></div><div class="note">DRAG TO ROTATE&nbsp; · &nbsp;MOVE TO EXPLORE</div>
+<div class="meta"><span>01 — Form & feeling</span><span>Graphic · Digital · Direction</span><span>Scroll to discover ↓</span></div></section>
+<div class="marquee">IDENTITY&nbsp; · &nbsp;DIGITAL EXPERIENCES&nbsp; · &nbsp;ART DIRECTION&nbsp; · &nbsp;DESIGN WITH INTENTION</div>
+<section class="statement" id="statement"><h2>Make an impression.<br>Leave a lasting mark.</h2><p>A more immersive expression of the MAHIR HAIDER identity: tactile forms, considered typography and quiet movement. Explore the sculpture by dragging; move your pointer to shift the light and perspective.</p></section>
+</main>
+<script type="module">
+import * as THREE from 'three';
+const canvas=document.querySelector('#scene'),stage=document.querySelector('.stage');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(stage.clientWidth,stage.clientHeight);
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,stage.clientWidth/stage.clientHeight,.1,100);camera.position.set(0,0,8);
+scene.add(new THREE.HemisphereLight(0xffffff,0x77736c,2.1));
+const key=new THREE.DirectionalLight(0xffffff,3.4);key.position.set(4,5,6);scene.add(key);
+const rim=new THREE.PointLight(0xffffff,35,18);rim.position.set(-4,1,3);scene.add(rim);
+const sculpture=new THREE.Group();scene.add(sculpture);
+const stone=new THREE.MeshPhysicalMaterial({color:0xb7b2a9,metalness:.32,roughness:.23,clearcoat:1,clearcoatRoughness:.12});
+const dark=new THREE.MeshPhysicalMaterial({color:0x292929,metalness:.75,roughness:.2});
+const core=new THREE.Mesh(new THREE.TorusKnotGeometry(1.12,.34,220,32,2,3),stone);core.rotation.set(.35,.3,.1);sculpture.add(core);
+const ringMat=new THREE.MeshStandardMaterial({color:0x55534f,metalness:.88,roughness:.22});
+for(let i=0;i<3;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(1.75+i*.19,.018,12,180),ringMat);ring.rotation.set(.7+i*.42,.25+i*.7,.3+i*.55);sculpture.add(ring)}
+const orbGeo=new THREE.IcosahedronGeometry(.17,2);
+for(let i=0;i<9;i++){const orb=new THREE.Mesh(orbGeo,i%2?stone:dark);const a=i/9*Math.PI*2;orb.position.set(Math.cos(a)*2.25,Math.sin(a*1.7)*1.2,Math.sin(a)*1.35);sculpture.add(orb)}
+const floor=new THREE.Mesh(new THREE.CircleGeometry(2.55,80),new THREE.MeshBasicMaterial({color:0xaaa69e,transparent:true,opacity:.12}));floor.rotation.x=-Math.PI/2;floor.position.y=-2.25;scene.add(floor);
+let tx=0,ty=0,drag=false,px=0,py=0,rotX=0,rotY=0;
+canvas.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;if(drag){rotY+=(e.clientX-px)*.009;rotX+=(e.clientY-py)*.009;px=e.clientX;py=e.clientY}});
+canvas.addEventListener('pointerup',()=>drag=false);canvas.addEventListener('pointercancel',()=>drag=false);
+const clock=new THREE.Clock();
+function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();sculpture.rotation.y+=(rotY+tx*.42+Math.sin(t*.22)*.12-sculpture.rotation.y)*.035;sculpture.rotation.x+=(rotX+ty*.25-sculpture.rotation.x)*.035;sculpture.position.y=Math.sin(t*.65)*.09;key.position.x=3+tx*3;camera.position.x+=(tx*.22-camera.position.x)*.025;camera.lookAt(0,0,0);renderer.render(scene,camera)}
+animate();
+new ResizeObserver(()=>{const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}).observe(stage);
+</script>
+</body></html>
