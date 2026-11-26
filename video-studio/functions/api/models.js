@@ -1,4 +1,4 @@
-import { getFreeModels, json } from "../_lib/openrouter.js";
+import { getFreeModels, json } from "../../lib/openrouter.js";
 
 export async function onRequestGet() {
   try {
