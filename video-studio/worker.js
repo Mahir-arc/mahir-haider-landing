@@ -62,7 +62,7 @@ async function generate(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const apiPath = url.pathname.replace(/\/+$/, "").toLowerCase();
+    const apiPath = url.pathname.toLowerCase();
     if ((apiPath === "/api/models" || apiPath.endsWith("/api/models")) && request.method === "GET") {
       try {
         const models = await getFreeModels();
