@@ -62,7 +62,8 @@ async function generate(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.pathname === "/api/models" && request.method === "GET") {
+    const apiPath = url.pathname.replace(/\\/+$/, "").toLowerCase();
+    if ((apiPath === "/api/models" || apiPath.endsWith("/api/models")) && request.method === "GET") {
       try {
         const models = await getFreeModels();
         return json({ models: [{ id: "openrouter/free", name: "OpenRouter Free Router (automatic)" }, ...models] }, 200, {
@@ -72,8 +73,11 @@ export default {
         return json({ error: "Could not verify free models right now. Please try again later." }, 503);
       }
     }
-    if (url.pathname === "/api/generate" && request.method === "POST") return generate(request, env);
-    if (url.pathname.startsWith("/api/")) return json({ error: "Not found." }, 404);
+    if ((apiPath === "/api/health" || apiPath.endsWith("/api/health")) && request.method === "GET") {
+      return json({ ok: true, service: "mahir-video-studio", api: "worker-reached" });
+    }
+    if ((apiPath === "/api/generate" || apiPath.endsWith("/api/generate")) && request.method === "POST") return generate(request, env);
+    if (apiPath.includes("/api/")) return json({ error: "API worker reached but route not found.", path: url.pathname }, 404);
     return env.ASSETS.fetch(request);
   }
 };
