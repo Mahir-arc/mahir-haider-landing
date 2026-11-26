@@ -81,3 +81,5 @@ export default {
     return env.ASSETS.fetch(request);
   }
 };
+
+// Deployment marker: keep API requests routed through this Worker before static assets.
