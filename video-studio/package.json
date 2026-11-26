@@ -2,10 +2,19 @@
   "name": "mahir-ai-video-studio",
   "version": "0.2.0",
   "private": true,
-  "scripts": { "start": "node server.js" },
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
   "dependencies": {
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0"
   },
-  "engines": { "node": ">=18.17" }
+  "engines": {
+    "node": ">=18.17"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
 }
