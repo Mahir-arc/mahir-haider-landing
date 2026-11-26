@@ -4,11 +4,13 @@ export async function onRequestPost({ request, env }) {
   if (!isSameOrigin(request)) return json({ error: "Request origin rejected." }, 403);
   if (!env.OPENROUTER_API_KEY) return json({ error: "Set OPENROUTER_API_KEY as an encrypted Cloudflare Pages secret first." }, 503);
 
-  const length = Number(request.headers.get("Content-Length") || 0);
-  if (length > 16 * 1024) return json({ error: "Request body is too large." }, 413);
+  let rawBody;
+  try { rawBody = await request.text(); }
+  catch (_) { return json({ error: "Could not read request body." }, 400); }
+  if (rawBody.length > 16 * 1024) return json({ error: "Request body is too large." }, 413);
 
   let body;
-  try { body = await request.json(); }
+  try { body = JSON.parse(rawBody); }
   catch (_) { return json({ error: "Invalid JSON request." }, 400); }
 
   const idea = body && body.idea;
