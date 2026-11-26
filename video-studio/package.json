@@ -1,8 +1,11 @@
 {
   "name": "mahir-ai-video-studio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": { "start": "node server.js" },
-  "dependencies": { "express": "^4.21.2" },
-  "engines": { "node": ">=18" }
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0"
+  },
+  "engines": { "node": ">=18.17" }
 }
