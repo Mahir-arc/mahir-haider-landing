@@ -8,9 +8,10 @@ export function json(data, status = 200, extraHeaders = {}) {
 export function hasZeroPricing(pricing) {
   if (!pricing || (Array.isArray(pricing.overrides) && pricing.overrides.length > 0)) return false;
   const fields = ["prompt", "completion", "request", "image", "web_search", "internal_reasoning", "input_cache_read", "input_cache_write"];
-  return Number(pricing.prompt) === 0 &&
-    Number(pricing.completion) === 0 &&
-    fields.every(field => pricing[field] === undefined || Number(pricing[field]) === 0);
+  const isZero = value => value === 0 || value === "0";
+  return isZero(pricing.prompt) &&
+    isZero(pricing.completion) &&
+    fields.every(field => pricing[field] === undefined || isZero(pricing[field]));
 }
 
 export async function getFreeModels() {
