@@ -13,8 +13,17 @@ An isolated starter app for creating short-form video scripts and storyboards wi
 - The Node server has an in-memory request limiter. The Cloudflare Pages Functions version enforces same-origin browser requests but does not yet have a durable per-user rate limiter. Do not make the Cloudflare deployment public until platform-level rate limiting or Turnstile protection is configured.
 - Free model availability and provider quotas can change. Free does not mean unlimited.
 
-## Cloudflare Pages deployment (free plan)
-This repository branch is prepared for Pages Functions, but it is not deployed.
+## Cloudflare Workers deployment (free plan)
+
+For a Worker project (the `workers.dev` style deployment), use the `video-studio` folder as the project root and deploy with Wrangler. The config in `wrangler.jsonc` serves `public/` as static assets and routes `/api/*` through `worker.js`.
+
+1. Set the Worker build/deploy command to `npm install && npx wrangler deploy` (or use the repository's `npm run deploy` after dependencies are installed).
+2. Ensure the Worker project root directory is `video-studio`.
+3. Add `OPENROUTER_API_KEY` as an encrypted Worker secret in the Worker settings. Never expose it as a public variable.
+4. Protect `POST /api/generate` with Cloudflare rate limiting or Turnstile before public launch. The Worker entrypoint currently has same-origin and body-size checks, but no durable per-user rate limiter.
+
+## Cloudflare Pages deployment (alternative, free plan)
+This branch now includes a standalone Cloudflare Worker entrypoint (`worker.js`) and `wrangler.jsonc`, as well as the Pages Functions adapter. The Worker serves `public/` assets and handles `/api/models` and `/api/generate`.
 
 1. In Cloudflare, create a Pages project connected to this GitHub repository.
 2. Select branch `feature/mahir-ai-video-studio` (never change the portfolio's production branch).
@@ -33,4 +42,4 @@ Cloudflare Pages Functions read encrypted secrets through `context.env`. The API
 4. Run `npm start` and open the local address shown by the server.
 
 ## Current status
-The app currently generates text scripts and storyboards; it does not yet render finished video files. The Cloudflare Pages adapter is committed, but hosting, secret configuration and rate-limit protection remain. No deployment or paid service has been enabled.
+The app currently generates text scripts and storyboards; it does not yet render finished video files. Worker and Pages deployment adapters are committed. Hosting configuration, secret verification and rate-limit protection must still be checked in the Cloudflare dashboard. No paid model fallback is implemented.
