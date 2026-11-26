@@ -1,4 +1,4 @@
-import { getFreeModels, isSameOrigin, json } from "../_lib/openrouter.js";
+import { getFreeModels, isSameOrigin, json } from "../../lib/openrouter.js";
 
 export async function onRequestPost({ request, env }) {
   if (!isSameOrigin(request)) return json({ error: "Request origin rejected." }, 403);
