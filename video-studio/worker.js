@@ -4,10 +4,15 @@ async function generate(request, env) {
   if (!isSameOrigin(request)) return json({ error: "Request origin rejected." }, 403);
   if (!env.OPENROUTER_API_KEY) return json({ error: "Set OPENROUTER_API_KEY as an encrypted Worker secret first." }, 503);
 
+  if (!request.headers.get("Content-Type")?.toLowerCase().startsWith("application/json")) {
+    return json({ error: "Send the request as application/json." }, 415);
+  }
   let rawBody;
   try { rawBody = await request.text(); }
   catch (_) { return json({ error: "Could not read request body." }, 400); }
-  if (rawBody.length > 16 * 1024) return json({ error: "Request body is too large." }, 413);
+  if (new TextEncoder().encode(rawBody).byteLength > 16 * 1024) {
+    return json({ error: "Request body is too large." }, 413);
+  }
 
   let body;
   try { body = JSON.parse(rawBody); }
