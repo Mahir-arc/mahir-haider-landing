@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
+  "name": "mahir-video-studio",
+  "main": "video-studio/worker.js",
+  "compatibility_date": "2026-11-26",
+  "assets": {
+    "directory": "./video-studio/public",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  }
+}
