@@ -21,6 +21,16 @@ const modelsLimiter = rateLimit({
   legacyHeaders: false
 });
 
+function hasZeroPricing(pricing) {
+  if (!pricing || (Array.isArray(pricing.overrides) && pricing.overrides.length > 0)) return false;
+  const priceFields = [
+    "prompt", "completion", "request", "image", "web_search",
+    "internal_reasoning", "input_cache_read", "input_cache_write"
+  ];
+  return ["prompt", "completion"].every(field => Number(pricing[field]) === 0) &&
+    priceFields.every(field => pricing[field] === undefined || Number(pricing[field]) === 0);
+}
+
 let freeModelsCache = { at: 0, models: [] };
 async function getFreeModels() {
   if (Date.now() - freeModelsCache.at < 5 * 60 * 1000 && freeModelsCache.models.length) {
@@ -36,9 +46,7 @@ async function getFreeModels() {
     .filter(model =>
       typeof model.id === "string" &&
       model.id.endsWith(":free") &&
-      model.pricing &&
-      Number(model.pricing.prompt) === 0 &&
-      Number(model.pricing.completion) === 0
+      hasZeroPricing(model.pricing)
     )
     .map(model => ({ id: model.id, name: model.name || model.id }))
     .sort((a, b) => a.name.localeCompare(b.name));
