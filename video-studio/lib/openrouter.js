@@ -29,6 +29,6 @@ export async function getFreeModels() {
 export function isSameOrigin(request) {
   const origin = request.headers.get("Origin");
   if (!origin) return false;
-  try { return new URL(origin).host === new URL(request.url).host; }
+  try { return new URL(origin).origin === new URL(request.url).origin; }
   catch (_) { return false; }
 }
